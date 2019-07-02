@@ -1,0 +1,82 @@
+<div id=adduser class="container-fluid">
+<form #userForm="ngForm">
+<div class="panel panel-primary">
+    <div class="panel-heading">
+                    <h3 class="panel-title">Create User</h3>
+        </div>
+    <div class="panel-body">
+  <div class="form-group row">
+    <label for="firstName" class="col-sm-2 col-form-label"> First Name </label>
+    <div class="col-sm-4">
+      <input class="form-control" type="text" [(ngModel)]="user.firstName" name="firstName" id="firstName" placeholder="First Name" required #firstName="ngModel"/>
+      <small *ngIf="!firstName.valid"></small>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="lastName" class="col-sm-2 col-form-label">Last Name </label>
+    <div class="col-sm-4">
+        <input class="form-control" type="text" [(ngModel)]="user.lastName" name="lastName" id="lastName" placeholder="Last Name" required #lastName="ngModel"/>
+        <small *ngIf="!lastName.valid"></small>
+    </div>
+  </div> 
+  <div class="form-group row">
+      <label for="employeeId" class="col-sm-2 col-form-label"> EmployeeID  </label>
+      <div class="col-sm-4">
+          <input class="form-control" type="text" [(ngModel)]="user.employeeId" name="employeeId" id="employeeId" placeholder="Employee ID" required #employeeId="ngModel"/>
+          <small *ngIf="!employeeId.valid"></small>
+      </div>
+  </div>
+  <div class="form-group row">
+      <div class="col-md-3">
+          <input type="button" [value]="editUserFlag ? 'Update' : 'Add'" class="btn btn-success" (click)="onSubmit(user);userForm.reset();" [disabled]="!userForm.form.valid"/>
+      </div>
+      <div class="col-md-9"> 
+          <input type="button" value="Reset" class="btn btn-primary" (click)="userForm.reset()"/>
+      </div>
+  </div>
+  </div>
+</div>
+  
+      <div class="form-group row">
+          <div class="col-md-4">
+              <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search by First Name" name="searchText">
+          </div>
+          <div class="col-md-8"> 
+              <label class="form-group">&nbsp;&nbsp;Sort By&nbsp;&nbsp;</label>
+              <button class="btn btn-info" (click)="sortByFirstName()">First Name</button>&nbsp;&nbsp;
+              <button class="btn btn-info" (click)="sortByLastName()">Last Name</button>&nbsp;&nbsp;
+              <button class="btn btn-info" (click)="sortById()">Id</button>&nbsp;&nbsp;
+          </div>
+      </div>
+</form>
+<div id=listuser class="container-fluid">
+    <div class="panel panel-primary" *ngFor="let user of users | filter:searchText">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{user.firstName}} Details</h3>
+        </div>
+        <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <input class="form-control" [(ngModel)]="user.firstName" placeholder="firstName" readonly #test="ngModel">
+            </div>
+            <div class="col-sm-6">
+                <button class="btn btn-primary" (click)="editUser(user)">Edit</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <input class="form-control" [(ngModel)]="user.lastName" placeholder="lastName" readonly>
+            </div>
+            <div class="col-sm-6">
+                <button class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <input class="form-control" [(ngModel)]="user.employeeId" placeholder="employeeId" readonly>
+            </div>    
+        </div>
+    </div>
+    </div>
+</div>
+</div>

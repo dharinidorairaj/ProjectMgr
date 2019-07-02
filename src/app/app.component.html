@@ -1,0 +1,21 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container-fluid">
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}
+  </h1>
+</div>
+
+<div id=navi>
+  <div class="row" >
+      <ul id=unorder class="nav nav-pills">
+        <li routerLinkActive="active"><a routerLink="/add-project"><h4>Add Project</h4></a></li>
+        <li routerLinkActive="active"><a routerLink="/add-task"><h4>Add Task</h4></a></li>
+        <li routerLinkActive="active"><a routerLink="/add-user"><h4>Add User</h4></a></li>
+        <li routerLinkActive="active"><a routerLink="/view-task"><h4>View Task</h4></a></li>
+      </ul>
+  </div> 
+
+</div>
+<router-outlet></router-outlet>
+</div>
